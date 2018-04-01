@@ -22,12 +22,24 @@ class App extends Component {
     this.state = {
       count: 10,
       step: 10,
-      db: DBpost,
-      isLoading: false
+      db: [],
+      isLoading: true
     };
 
     this.onClick = this.onClick.bind(this);
     this.onChange = this.onChange.bind(this);    
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      fetchData("posts").then((posts) => {
+          this.setState({
+              db: posts,
+              isLoading: false
+          });
+        }
+      );
+    }, 2000);
   }
 
   onClick() {
@@ -73,8 +85,11 @@ class App extends Component {
         <AppSearch 
           onChange={this.onChange} />
         <h1>Кількість записів {count}</h1>
-        {!isLoading && <Loader>Loading ...</Loader>}
-        <AppUl items={db.slice(0, count)} />
+        {
+          isLoading 
+            ? (<Loader>Loading ...</Loader>) 
+            : (<AppUl items={db.slice(0, count)} />)
+        }
         <AppButton 
           text={(db.length !== count && step < db.length) ? TEXT_ADD_POST : TEXT_NONE} 
           onClick={this.onClick} />
