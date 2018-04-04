@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AppLi from './AppLi.js';
+import Post from './Post.js'
+import NumberElementInList from './NumberElementInList';
 import './AppUl.css';
 
 const defValue = {
@@ -20,7 +22,12 @@ class AppUl extends Component {
         return (
             <div className="listPost">
                 {items.map((item, index) => 
-                    <AppLi key={item.id} item={item} index={index} />
+                    <Post key={item.id}>
+                        <NumberElementInList>
+                            {index + 1}
+                        </NumberElementInList>
+                        <AppLi item={item} index={index} />
+                    </Post>
                 )}
             </div>
         )

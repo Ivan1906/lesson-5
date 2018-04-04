@@ -1,4 +1,4 @@
-.App h1 {
+.App > h1 {
     font-size: 50px;
     text-align: center;
     font-style: oblique;
