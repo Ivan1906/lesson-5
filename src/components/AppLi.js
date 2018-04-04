@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './AppLi.css';
 
 class AppLi extends Component {
 
