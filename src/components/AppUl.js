@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import AppLi from './AppLi.js';
 import Post from './styledComponents/Post.js'
@@ -15,24 +15,21 @@ const defValue = {
     ]
 };
 
-class AppUl extends Component {
-
-    render() {
-        const { items } = this.props.items.length !== 0 ? this.props : defValue;
-        return (
-            <div className="listPost">
-                {items.map((item, index) => 
-                    <Post key={item.id}>
-                        <NumberElementInList>
-                            {index + 1}
-                        </NumberElementInList>
-                        <AppLi item={item} index={index} />
-                    </Post>
-                )}
-            </div>
-        )
-    }
-}
+const AppUl = (props) => {
+    const { items } = props.items.length !== 0 ? props : defValue;
+    return (
+        <div className="listPost">
+            {items.map((item, index) => 
+                <Post key={item.id}>
+                    <NumberElementInList>
+                        {index + 1}
+                    </NumberElementInList>
+                    <AppLi item={item} />
+                </Post>
+            )}
+        </div>
+    )
+};
 
 AppUl.protoTypes = {
     items: PropTypes.arrayOf(PropTypes.object)
