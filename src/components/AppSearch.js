@@ -1,32 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "./AppSearch.css";
+import Input from './styledComponents/Input'
 
 const AppSearch = (props) => {
     let { onChange } = props;
     return (
-        <input type="text" 
-            className="AppSearch" 
+        <Input type="text" 
             placeholder="Enter title"
-            onChange={onChange} />
+            width="50%"
+            onChange={onChange} borMar/>
     )
 }
-
-/*class AppSearch extends Component {
-
-    onChangeChild(event) {
-        this.props.onChange(event);
-    }
-
-    render() {
-        return(
-            <input type="text" 
-                className="AppSearch" 
-                placeholder="Enter title"
-                onChange={this.onChangeChild.bind(this)} />
-        )
-    }
-}*/
 
 AppSearch.protoTypes = {
     onChange: PropTypes.func

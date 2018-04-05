@@ -15,10 +15,10 @@ class AppLi extends Component {
     render() {
         const { item: { title, body } } = this.props;
         return(
-            <React.Fragment>
+            <div>
                 <h5>{title.toUpperCase()}</h5>
                 <p>{body.slice(0, 200)}</p>
-            </React.Fragment>
+            </div>
         )
     }
 }

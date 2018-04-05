@@ -5,8 +5,9 @@ const Post = styled.div`
     margin: 0px 10px 20px 10px;
     padding: 0px 15px;
     box-shadow: 2px 5px 3px mintcream;
+    display: flex;
 
-    & > p {
+    & > div > p {
         text-align: justify;
     }
 
@@ -16,8 +17,12 @@ const Post = styled.div`
         padding: 0px 5px;
         box-shadow: 2px 5px 30px red;
     }
+
+    &:hover span {
+        display: none;
+    }
     
-    &:hover > h5 {
+    &:hover > div > h5 {
         text-align: center;
         text-decoration: underline;
         font-weight: bold;
@@ -25,7 +30,7 @@ const Post = styled.div`
         font-size: 16px;
     }
     
-    &:hover p {
+    &:hover div p {
         font-style: italic;
         font-size: 20px;
     }

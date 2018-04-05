@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "./AppButton.css";
+import Input from './styledComponents/Input'
 
 const AppButton = (props) => {
     let { text, onClick } = props;
     return (
-        <input type="button" className="AppButton" value={text} onClick={onClick} />
+        <Input type="button" value={text} onClick={onClick} />
     )
 }
 
