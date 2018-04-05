@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import "./AppButton.css";
 
-class AppButton extends Component {
-    render() {
-        const { text, onClick } = this.props;
-        return(
-            <input type="button"
-                className="AppButton" 
-                value={text}
-                onClick={onClick} />
-        )
-    }
+const AppButton = (props) => {
+    let { text, onClick } = props;
+    return (
+        <input type="button" className="AppButton" value={text} onClick={onClick} />
+    )
 }
 
 AppButton.protoTypes = {

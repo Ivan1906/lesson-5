@@ -4,7 +4,7 @@ import './App.css';
 import AppButton from './components/AppButton';
 import AppSearch from './components/AppSearch';
 import AppUl from './components/AppUl';
-import Loader from './components/Loader';
+import Loader from './components/styledComponents/Loader';
 import DBpost from './data.json';
 
 const fetchData = entity =>
@@ -13,6 +13,7 @@ const fetchData = entity =>
 const TEXT_ADD_POST = "Добавити нових постів";
 const TEXT_NONE = "Записів для добавлення немає";
 const API = "https://jsonplaceholder.typicode.com/";
+const STEP = 10;
 
 class App extends Component {
 
@@ -21,7 +22,6 @@ class App extends Component {
 
     this.state = {
       count: 10,
-      step: 10,
       db: [],
       isLoading: true
     };
@@ -43,12 +43,12 @@ class App extends Component {
   }
 
   onClick() {
-    const { count, step, db } = this.state;
+    const { count, db } = this.state;
     if (count < db.length) {
       this.setState((prevState) => {
         return {
-          count: prevState.count + step < prevState.db.length 
-                  ? prevState.count + step 
+          count: prevState.count + STEP < prevState.db.length 
+                  ? prevState.count + STEP 
                   : prevState.db.length
         }
       });
@@ -71,15 +71,15 @@ class App extends Component {
     }});
     this.setState((prevState) => {
       return {
-        count: prevState.db.length > prevState.step 
-          ? prevState.step 
+        count: prevState.db.length > STEP 
+          ? STEP 
           : prevState.db.length
       }
     });
   }
 
   render() {
-    let { count, step, db, isLoading } = this.state;
+    let { count, db, isLoading } = this.state;
     return (
       <div className="App">
         <AppSearch 
@@ -91,7 +91,7 @@ class App extends Component {
             : (<AppUl items={db.slice(0, count)} />)
         }
         <AppButton 
-          text={(db.length !== count && step < db.length) ? TEXT_ADD_POST : TEXT_NONE} 
+          text={(db.length !== count && STEP < db.length) ? TEXT_ADD_POST : TEXT_NONE} 
           onClick={this.onClick} />
       </div>
     );

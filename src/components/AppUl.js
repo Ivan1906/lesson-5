@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AppLi from './AppLi.js';
-import Post from './Post.js'
-import NumberElementInList from './NumberElementInList';
+import Post from './styledComponents/Post.js'
+import NumberElementInList from './styledComponents/NumberElementInList';
 import './AppUl.css';
 
 const defValue = {
