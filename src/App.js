@@ -5,15 +5,19 @@ import AppButton from './components/AppButton';
 import AppSearch from './components/AppSearch';
 import AppUl from './components/AppUl';
 import Loader from './components/styledComponents/Loader';
-import DBpost from './data.json';
 
 const fetchData = entity =>
   fetch(API + entity).then(response => response.json());
+
+const shortArrayObject = (a, b) => 
+  (a.title > b.title) ? 1 : 
+    (a.title < b.title) ? -1 : 0;
 
 const TEXT_ADD_POST = "Добавити нових постів";
 const TEXT_NONE = "Записів для добавлення немає";
 const API = "https://jsonplaceholder.typicode.com/";
 const STEP = 10;
+const ALL_POSTS = [];
 
 class App extends Component {
 
@@ -37,6 +41,8 @@ class App extends Component {
               db: posts,
               isLoading: false
           });
+          // Original array posts
+          posts.forEach(elem => ALL_POSTS.push(elem));
         }
       );
     }, 2000);
@@ -60,14 +66,12 @@ class App extends Component {
     this.setState((prevState) => {
       return {
         db: searchText !=="" 
-              ? DBpost.reduce((newDB, elem) => {
+              ? ALL_POSTS.reduce((newDB, elem) => {
                   return elem.title.includes(searchText)
-                          ? newDB.concat(elem).sort((a, b) => 
-                              (a.title > b.title) ? 1 : 
-                                (a.title < b.title) ? -1 : 0) 
+                          ? newDB.concat(elem).sort(shortArrayObject)
                           : newDB 
                 }, [])
-              : DBpost
+              : ALL_POSTS
     }});
     this.setState((prevState) => {
       return {
